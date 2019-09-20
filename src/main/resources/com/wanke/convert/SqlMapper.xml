@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wanke.convert.dao.SqlMapper">
+
+    <select id="testPLSQL" resultType="int">
+        select count(1) from log;
+    </select>
+
+    <insert id="normalInsertLog" parameterType="Map">
+        insert into log (log) values
+        <foreach item="item" index="key" collection="map" open="" separator="," close="">
+            (#{item})
+        </foreach>
+    </insert>
+
+    <insert id="insertLog" parameterType="Map">
+        begin
+            insert into log (log) values
+            <foreach item="item" index="key" collection="map" open="" separator="," close="">
+                (#{item})
+            </foreach>
+        end;
+    </insert>
+
+    <update id="singleInsert" statementType="CALLABLE">
+        begin
+          insert into log (log) values (#{log});
+        end;
+    </update>
+
+</mapper>

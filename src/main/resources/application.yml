@@ -1,0 +1,18 @@
+debug: true
+
+server:
+  port: 8080
+  servlet:
+    context-path: /wanke/
+
+spring:
+  datasource:
+    name: test
+    url: jdbc:mysql://127.0.0.1:3306/tag?useSSL=false
+    username: root
+    password: root1234
+    driver-class-name: com.mysql.jdbc.Driver
+
+mybatis:
+  mapper-locations: classpath:com/wanke/convert/*.xml
+
