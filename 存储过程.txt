@@ -1,0 +1,11 @@
+delimiter $$
+
+CREATE PROCEDURE proc_mysql(IN sql_text varchar(4000))
+begin
+	set @sql = sql_text;
+    PREPARE stmt FROM @sql;         -- 预处理动态sql语句
+    EXECUTE stmt ;                        -- 执行sql语句
+    deallocate prepare stmt;      -- 释放prepare
+end $$
+
+delimiter ;
